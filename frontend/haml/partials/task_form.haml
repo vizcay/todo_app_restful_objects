@@ -1,0 +1,41 @@
+%script#task_form_template{type: 'text/template'}
+  %legend Task
+  .form-horizontal#task_form
+    .form-group
+      %label.col-sm-2.control-label ID :
+      .col-sm-6
+        %input#task_id.form-control{type: 'text', value: '{{ task_id }}', readonly: true}
+    .form-group
+      %label.col-sm-2.control-label Description :
+      .col-sm-6
+        %input#task_description.form-control{type: 'text', value: '{{ description }}'}
+    .form-group
+      %label.col-sm-2.control-label Completed :
+      .col-sm-6
+        .checkbox
+          %label
+            %input{type: 'checkbox'} &nbsp;
+    .form-group
+      %label.col-sm-2.control-label Project :
+      .col-sm-6
+        %select#project.form-control
+          %option{value: ''}
+    .form-group
+      %label.col-sm-2.control-label Due by :
+      .col-sm-6
+        %input#task_due_by.form-control{type: 'date', value: '{{ due_by }}'}
+    .form-group
+      %label.col-sm-2.control-label Created at :
+      .col-sm-6
+        %input.form-control{type: 'date', value: '{{ created_at }}', readonly: true}
+    .form-group
+      %label.col-sm-2.control-label Resources :
+      .col-sm-6#resources_placeholder
+    .col-sm-offset-2.col-sm-6
+      .text-center
+        %button#create.btn Create
+        %button#save.btn Save
+        %button#revert.btn Revert
+        %button#cancel.btn Cancel
+        %button#delete.btn Delete
+

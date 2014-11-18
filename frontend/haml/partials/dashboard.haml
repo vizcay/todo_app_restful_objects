@@ -1,0 +1,30 @@
+%script#dashboard_template{type: 'text/template'}
+  .container-fluid#dashboard
+    %h2 Dashboard
+    %hr
+    .row
+      .col-md-6#left_column
+      .col-md-6#right_column
+
+%script#dashboard_project_template{type: 'text/template'}
+  .project_box
+    %img.project_image
+    %h3
+      %a{href: "#project_edit/{{ id }}"} {{ description }}
+    .progress
+      .progress-bar{ style: 'width: {{ completed_percentage }}%' } {{ completed_percentage }} %
+    %table.table
+      %thead
+        %th Tasks
+        %th.priority Priority
+        %th
+      %tbody.tasks_container
+
+%script#dashboard_project_task_template{type: 'text/template'}
+  %tr{ data: { 'completed' => '{{ completed }}' } }
+    %td.task_description
+      %a{href: "#task_view/{{ id }}"} {{ description }}
+    %td.priority {{ priority }}
+    %td.button
+      %button.mark_done.btn.btn-xs.btn-primary Done!
+

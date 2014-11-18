@@ -1,0 +1,8 @@
+%script#resource_row_template{type: 'text/template'}
+  %td.description
+    %input#resource_description.form-control{type: 'text', value: '{{ description }}'}
+  %td.cost
+    %input#resource_cost.form-control{type: 'text', value: '{{ cost }}'}
+  %td.buttons
+    %a.btn.btn-xs.btn-primary#remove Remove
+

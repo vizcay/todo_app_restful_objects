@@ -1,0 +1,19 @@
+%script#tasks_table_template{type: 'text/template'}
+  .table_header
+    %a.btn.btn-xs.btn-primary#new New Task
+    %h2 Tasks
+    %hr
+  %table.table.table-condensed.table-striped.table-bordered#tasks
+    %thead
+      %tr
+        %th ID
+        %th Description
+        %th Completed
+        %th Project
+        %th Due by
+        %th Total cost
+        %th Created at
+        %th
+    %tbody
+  %p.text-right Total: {{ task_count }} tasks
+

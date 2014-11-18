@@ -1,0 +1,32 @@
+.navbar.navbar-inverse
+  .container
+    .navbar-header
+      %a.navbar-brand{href: '#'} TodoApp
+    %ul.navbar-nav.nav
+      %li
+        %a{href: '#dashboard'} Dashboard
+      %li.dropdown
+        %a{href: '#', class: 'dropdown-togger', data: { toggle: 'dropdown'}}
+          Projects
+          %span.caret
+            %ul.dropdown-menu
+              %li
+                %a{href: '#project_new'} New Project..
+              %li
+                %a{href: '#project_list'} List all..
+              %li
+                %a{href: '#projects_delete_all'} Delete all
+      %li.dropdown
+        %a{href: '#', class: 'dropdown-togger', data: { toggle: 'dropdown'}}
+          Tasks
+          %span.caret
+        %ul.dropdown-menu
+          %li
+            %a{href: '#task_new'} New Task..
+          %li
+            %a{href: '#tasks_list'} List all..
+          %li
+            %a{href: '#tasks_delete_all'} Delete all
+      %li
+        %a#view_log{href: '#'} View log
+

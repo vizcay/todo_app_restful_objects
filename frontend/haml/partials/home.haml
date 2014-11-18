@@ -1,0 +1,17 @@
+%script#home_template{type: 'text/template'}
+  %h1 Welcome to TodoApp
+  %hr
+  .form-horizontal
+    .form-group
+      %label.col-sm-2.control-label Connected :
+      .col-sm-6
+        %input#connected.form-control{value: '{{ connected }}'}
+    .form-group
+      %label.col-sm-2.control-label Restful Server :
+      .col-sm-6
+        %input#current_server.form-control{type: 'text', value: '{{ currentServer }}'}
+    .col-sm-offset-2.col-sm-6
+      .text-center
+        %button#connect.btn Connect
+        %button#create_fixtures.btn Create Fixtures
+

@@ -1,0 +1,11 @@
+#modal_view_log.modal
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', data: { dismiss: 'modal' } }
+          %span &times;
+          %span.sr-only Close
+        %h4.modal-title Ajax log
+      .modal-body
+        %textarea#log
+

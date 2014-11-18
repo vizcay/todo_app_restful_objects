@@ -1,0 +1,111 @@
+#dashboard {
+  hr { margin-top: 0px; }
+  .project_box {
+    height: 250px;
+    margin-bottom: 20px;
+    table {
+      tr[data-completed='true'] {
+        td.task_description { text-decoration: line-through; }
+        button.mark_done    { display: none; }
+      }
+      td.priority {
+        text-align: center;
+        width: 50px;
+      }
+      td.button {
+        text-align: center;
+        width: 60px;
+      }
+    }
+    img {
+      float: left;
+      height: 75px;
+      width: 75px;
+      border: 1px solid;
+      margin-right: 10px;
+      margin-bottom: 5px;
+    }
+  }
+}
+
+.table_header {
+  h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  hr {
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  a.btn {
+    float: right;
+    margin-top: 7px;
+  }
+}
+
+table#tasks {
+  margin-bottom: 5px;
+  th { text-align: center; }
+  td.task_id, td.completed, td.due_by, td.created_at { text-align: center; }
+  td.total_cost { text-align: right; }
+  td.buttons {
+    text-align: center;
+    width: 160px
+  }
+}
+
+table#projects {
+  margin-bottom: 5px;
+  th, td         { text-align: center; }
+  td.description { text-align: left; }
+  td.buttons     { width: 110px; }
+  td.uncompleted_tasks, td.total_tasks, td.completed_percentage { width: 150px; }
+}
+
+table#resources {
+  th         { text-align: center; }
+  th.cost    { width: 120px; }
+  th.buttons { width: 50px; }
+  td.buttons {
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+#task_form {
+  #task_id { width: 75px; text-align: center; }
+  #project { width: 250px; }
+  input[type="date"] { width: 154px; }
+}
+
+#project_form {
+  #project_image {
+    width: 150px;
+    height: 150px;
+    border: 1px solid;
+  }
+  #image_upload {
+    margin-top: 10px;
+  }
+}
+
+#modal_view_log {
+  textarea {
+    height: 500px;
+    width: 100%;
+    white-space: pre;
+    word-wrap: normal;
+    font-family: Consolas, Courier New, monospace;
+    font-size: 8pt;
+    overflow-x: scroll;
+  }
+
+ .modal-dialog {
+    width: 95%;
+    height: 95%;
+  }
+
+  .modal-content {
+    height: 95%;
+  }
+}

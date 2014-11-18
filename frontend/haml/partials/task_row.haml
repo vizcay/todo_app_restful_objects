@@ -1,0 +1,13 @@
+%script#task_row_template{type: 'text/template'}
+  %td.task_id {{ task_id }}
+  %td {{ description }}
+  %td.completed {{ completed }}
+  %td {{ project_title }}
+  %td.due_by {{ due_by }}
+  %td.total_cost {{ total_cost }}
+  %td.created_at {{ created_at }}
+  %td.buttons
+    %a.btn.btn-xs.btn-primary#mark_done Done!
+    %a.btn.btn-xs.btn-primary#edit Edit
+    %a.btn.btn-xs.btn-primary#delete Delete
+

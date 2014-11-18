@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TodoApp Frontend</title>
+    <link href='css/external/bootstrap.css' media='screen' rel='stylesheet'>
+    <!-- / custom styles // -->
+    <link href='css/styles.css' media='screen' rel='stylesheet'>
+    <!-- / external libraries // -->
+    <script src='js/external/jquery.js'></script>
+    <script src='js/external/bootstrap.js'></script>
+    <script src='js/external/underscore.js'></script>
+    <script src='js/external/backbone.js'></script>
+    <!-- / general setup // -->
+    <script src='js/setup.js'></script>
+    <!-- / models // -->
+    <script src='js/application_server.js'></script>
+    <script src='js/restful_model.js'></script>
+    <script src='js/task.js'></script>
+    <script src='js/project.js'></script>
+    <script src='js/resource.js'></script>
+    <!-- / collections // -->
+    <script src='js/tasks.js'></script>
+    <script src='js/projects.js'></script>
+    <script src='js/resources.js'></script>
+    <!-- / views // -->
+    <script src='js/home_view.js'></script>
+    <script src='js/dashboard_view.js'></script>
+    <script src='js/resources_table_view.js'></script>
+    <script src='js/resource_row_view.js'></script>
+    <script src='js/tasks_table_view.js'></script>
+    <script src='js/task_row_view.js'></script>
+    <script src='js/task_form_view.js'></script>
+    <script src='js/projects_table_view.js'></script>
+    <script src='js/project_row_view.js'></script>
+    <script src='js/project_form_view.js'></script>
+    <!-- / application router // -->
+    <script src='js/application.js'></script>
+    <script id='home_template' type='text/template'>
+      <h1>Welcome to TodoApp</h1>
+      <hr>
+      <div class='form-horizontal'>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Connected :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' id='connected' value='{{ connected }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Restful Server :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' id='current_server' type='text' value='{{ currentServer }}'>
+          </div>
+        </div>
+        <div class='col-sm-offset-2 col-sm-6'>
+          <div class='text-center'>
+            <button class='btn' id='connect'>Connect</button>
+            <button class='btn' id='create_fixtures'>Create Fixtures</button>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id='dashboard_template' type='text/template'>
+      <div class='container-fluid' id='dashboard'>
+        <h2>Dashboard</h2>
+        <hr>
+        <div class='row'>
+          <div class='col-md-6' id='left_column'></div>
+          <div class='col-md-6' id='right_column'></div>
+        </div>
+      </div>
+    </script>
+    <script id='dashboard_project_template' type='text/template'>
+      <div class='project_box'>
+        <img class='project_image'>
+        <h3>
+          <a href='#project_edit/{{ id }}'>{{ description }}</a>
+        </h3>
+        <div class='progress'>
+          <div class='progress-bar' style='width: {{ completed_percentage }}%'>{{ completed_percentage }} %</div>
+        </div>
+        <table class='table'>
+          <thead>
+            <th>Tasks</th>
+            <th class='priority'>Priority</th>
+            <th></th>
+          </thead>
+          <tbody class='tasks_container'></tbody>
+        </table>
+      </div>
+    </script>
+    <script id='dashboard_project_task_template' type='text/template'>
+      <tr data-completed='{{ completed }}'>
+        <td class='task_description'>
+          <a href='#task_view/{{ id }}'>{{ description }}</a>
+        </td>
+        <td class='priority'>{{ priority }}</td>
+        <td class='button'>
+          <button class='mark_done btn btn-xs btn-primary'>Done!</button>
+        </td>
+      </tr>
+    </script>
+    <script id='tasks_table_template' type='text/template'>
+      <div class='table_header'>
+        <a class='btn btn-xs btn-primary' id='new'>New Task</a>
+        <h2>Tasks</h2>
+        <hr>
+      </div>
+      <table class='table table-condensed table-striped table-bordered' id='tasks'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Completed</th>
+            <th>Project</th>
+            <th>Due by</th>
+            <th>Total cost</th>
+            <th>Created at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p class='text-right'>Total: {{ task_count }} tasks</p>
+    </script>
+    <script id='task_row_template' type='text/template'>
+      <td class='task_id'>{{ task_id }}</td>
+      <td>{{ description }}</td>
+      <td class='completed'>{{ completed }}</td>
+      <td>{{ project_title }}</td>
+      <td class='due_by'>{{ due_by }}</td>
+      <td class='total_cost'>{{ total_cost }}</td>
+      <td class='created_at'>{{ created_at }}</td>
+      <td class='buttons'>
+        <a class='btn btn-xs btn-primary' id='mark_done'>Done!</a>
+        <a class='btn btn-xs btn-primary' id='edit'>Edit</a>
+        <a class='btn btn-xs btn-primary' id='delete'>Delete</a>
+      </td>
+    </script>
+    <script id='task_form_template' type='text/template'>
+      <legend>Task</legend>
+      <div class='form-horizontal' id='task_form'>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>ID :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' id='task_id' readonly type='text' value='{{ task_id }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Description :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' id='task_description' type='text' value='{{ description }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Completed :</label>
+          <div class='col-sm-6'>
+            <div class='checkbox'>
+              <label>
+                <input type='checkbox'>&nbsp;</input>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Project :</label>
+          <div class='col-sm-6'>
+            <select class='form-control' id='project'>
+              <option value=''></option>
+            </select>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Due by :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' id='task_due_by' type='date' value='{{ due_by }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Created at :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' readonly type='date' value='{{ created_at }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Resources :</label>
+          <div class='col-sm-6' id='resources_placeholder'></div>
+        </div>
+        <div class='col-sm-offset-2 col-sm-6'>
+          <div class='text-center'>
+            <button class='btn' id='create'>Create</button>
+            <button class='btn' id='save'>Save</button>
+            <button class='btn' id='revert'>Revert</button>
+            <button class='btn' id='cancel'>Cancel</button>
+            <button class='btn' id='delete'>Delete</button>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id='projects_table_template' type='text/template'>
+      <div class='table_header'>
+        <a class='btn btn-xs btn-primary' id='new'>New Project</a>
+        <h2>Projects</h2>
+        <hr>
+      </div>
+      <table class='table table-condensed table-striped table-bordered' id='projects'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Uncompleted Tasks</th>
+            <th>Total Tasks</th>
+            <th>Completed %</th>
+            <th>Created at</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p class='text-right'>Total: {{ project_count }} projects</p>
+    </script>
+    <script id='project_row_template' type='text/template'>
+      <td>{{ project_id }}</td>
+      <td class='description'>{{ description }}</td>
+      <td class='uncompleted_tasks'>{{ uncompleted_tasks }}</td>
+      <td class='total_tasks'>{{ total_tasks }}</td>
+      <td class='completed_percentage'>{{ completed_percentage }}</td>
+      <td>{{ created_at }}</td>
+      <td class='buttons'>
+        <a class='btn btn-xs btn-primary' id='edit'>Edit</a>
+        <a class='btn btn-xs btn-primary' id='delete'>Delete</a>
+      </td>
+    </script>
+    <script id='project_form_template' type='text/template'>
+      <legend>Project</legend>
+      <div class='form-horizontal' id='project_form'>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>ID :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' readonly type='text' value='{{ project_id }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Description :</label>
+          <div class='col-sm-6'>
+            <input class='form-control' id='project_description' type='text' value='{{ description }}'>
+          </div>
+        </div>
+        <div class='form-group'>
+          <label class='col-sm-2 control-label'>Image :</label>
+          <div class='col-sm-6'>
+            <img id='project_image'>
+            <input id='image_upload' type='file'>
+          </div>
+        </div>
+        <div class='col-sm-offset-2 col-sm-6'>
+          <div class='text-center'>
+            <button class='btn' id='create'>Create</button>
+            <button class='btn' id='save'>Save</button>
+            <button class='btn' id='revert'>Revert</button>
+            <button class='btn' id='cancel'>Cancel</button>
+            <button class='btn' id='delete'>Delete</button>
+          </div>
+        </div>
+      </div>
+    </script>
+    <script id='resources_table_template' type='text/template'>
+      <table class='table table-condensed table-striped table-bordered' id='resources'>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th class='cost'>Cost</th>
+            <th class='buttons'>
+              <button class='btn btn-xs btn-primary' id='append'>Append</button>
+            </th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </script>
+    <script id='resource_row_template' type='text/template'>
+      <td class='description'>
+        <input class='form-control' id='resource_description' type='text' value='{{ description }}'>
+      </td>
+      <td class='cost'>
+        <input class='form-control' id='resource_cost' type='text' value='{{ cost }}'>
+      </td>
+      <td class='buttons'>
+        <a class='btn btn-xs btn-primary' id='remove'>Remove</a>
+      </td>
+    </script>
+  </head>
+  <body>
+    <div id='header'>
+      <div class='navbar navbar-inverse'>
+        <div class='container'>
+          <div class='navbar-header'>
+            <a class='navbar-brand' href='#'>TodoApp</a>
+          </div>
+          <ul class='navbar-nav nav'>
+            <li>
+              <a href='#dashboard'>Dashboard</a>
+            </li>
+            <li class='dropdown'>
+              <a class='dropdown-togger' data-toggle='dropdown' href='#'>
+                Projects
+                <span class='caret'>
+                  <ul class='dropdown-menu'>
+                    <li>
+                      <a href='#project_new'>New Project..</a>
+                    </li>
+                    <li>
+                      <a href='#project_list'>List all..</a>
+                    </li>
+                    <li>
+                      <a href='#projects_delete_all'>Delete all</a>
+                    </li>
+                  </ul>
+                </span>
+              </a>
+            </li>
+            <li class='dropdown'>
+              <a class='dropdown-togger' data-toggle='dropdown' href='#'>
+                Tasks
+                <span class='caret'></span>
+              </a>
+              <ul class='dropdown-menu'>
+                <li>
+                  <a href='#task_new'>New Task..</a>
+                </li>
+                <li>
+                  <a href='#tasks_list'>List all..</a>
+                </li>
+                <li>
+                  <a href='#tasks_delete_all'>Delete all</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href='#' id='view_log'>View log</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='container' id='content'></div>
+    <div class='modal' id='modal-ajax-wait' style='top: calc(50% - 150px) !important'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h4 class='modal-title'>Contacting server..</h4>
+          </div>
+          <div class='modal-body'>
+            <div class='progress'>
+              <div class='progress-bar progress-bar-striped' style='width: 100%'></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='modal' id='modal_view_log'>
+      <div class='modal-dialog'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <button class='close' data-dismiss='modal' type='button'>
+              <span>&times;</span>
+              <span class='sr-only'>Close</span>
+            </button>
+            <h4 class='modal-title'>Ajax log</h4>
+          </div>
+          <div class='modal-body'>
+            <textarea id='log'></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

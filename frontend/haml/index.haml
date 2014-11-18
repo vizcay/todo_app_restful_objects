@@ -1,0 +1,65 @@
+!!! 5
+%html
+  %head
+    %title TodoApp Frontend
+
+    %link{href: 'css/external/bootstrap.css', media: 'screen', rel: 'stylesheet'}
+
+    // custom styles //
+    %link{href: 'css/styles.css', media: 'screen', rel: 'stylesheet'}
+
+    // external libraries //
+    %script{src: 'js/external/jquery.js'}
+    %script{src: 'js/external/bootstrap.js'}
+    %script{src: 'js/external/underscore.js'}
+    %script{src: 'js/external/backbone.js'}
+
+    // general setup //
+    %script{src: 'js/setup.js'}
+
+    // models //
+    %script{src: 'js/application_server.js'}
+    %script{src: 'js/restful_model.js'}
+    %script{src: 'js/task.js'}
+    %script{src: 'js/project.js'}
+    %script{src: 'js/resource.js'}
+
+    // collections //
+    %script{src: 'js/tasks.js'}
+    %script{src: 'js/projects.js'}
+    %script{src: 'js/resources.js'}
+
+    // views //
+    %script{src: 'js/home_view.js'}
+    %script{src: 'js/dashboard_view.js'}
+    %script{src: 'js/resources_table_view.js'}
+    %script{src: 'js/resource_row_view.js'}
+    %script{src: 'js/tasks_table_view.js'}
+    %script{src: 'js/task_row_view.js'}
+    %script{src: 'js/task_form_view.js'}
+    %script{src: 'js/projects_table_view.js'}
+    %script{src: 'js/project_row_view.js'}
+    %script{src: 'js/project_form_view.js'}
+
+    // application router //
+    %script{src: 'js/application.js'}
+
+    - require_relative 'helpers'
+    = render('home')
+    = render('dashboard')
+    = render('tasks_table')
+    = render('task_row')
+    = render('task_form')
+    = render('projects_table')
+    = render('project_row')
+    = render('project_form')
+    = render('resources_table')
+    = render('resource_row')
+
+  %body
+    #header
+      = render('navbar')
+    #content.container
+    = render('modal_ajax_wait')
+    = render('modal_view_log')
+

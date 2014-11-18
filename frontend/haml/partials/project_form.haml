@@ -1,0 +1,24 @@
+%script#project_form_template{type: 'text/template'}
+  %legend Project
+  .form-horizontal#project_form
+    .form-group
+      %label.col-sm-2.control-label ID :
+      .col-sm-6
+        %input.form-control{type: 'text', value: '{{ project_id }}', readonly: true}
+    .form-group
+      %label.col-sm-2.control-label Description :
+      .col-sm-6
+        %input#project_description.form-control{type: 'text', value: '{{ description }}'}
+    .form-group
+      %label.col-sm-2.control-label Image :
+      .col-sm-6
+        %img#project_image
+        %input#image_upload{type: 'file'}
+    .col-sm-offset-2.col-sm-6
+      .text-center
+        %button#create.btn Create
+        %button#save.btn Save
+        %button#revert.btn Revert
+        %button#cancel.btn Cancel
+        %button#delete.btn Delete
+

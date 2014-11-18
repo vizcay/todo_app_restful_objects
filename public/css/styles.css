@@ -1,0 +1,94 @@
+#dashboard hr {
+  margin-top: 0px; }
+#dashboard .project_box {
+  height: 250px;
+  margin-bottom: 20px; }
+  #dashboard .project_box table tr[data-completed='true'] td.task_description {
+    text-decoration: line-through; }
+  #dashboard .project_box table tr[data-completed='true'] button.mark_done {
+    display: none; }
+  #dashboard .project_box table td.priority {
+    text-align: center;
+    width: 50px; }
+  #dashboard .project_box table td.button {
+    text-align: center;
+    width: 60px; }
+  #dashboard .project_box img {
+    float: left;
+    height: 75px;
+    width: 75px;
+    border: 1px solid;
+    margin-right: 10px;
+    margin-bottom: 5px; }
+
+.table_header h2 {
+  margin-top: 0px;
+  margin-bottom: 0px; }
+.table_header hr {
+  margin-top: 0px;
+  margin-bottom: 10px; }
+.table_header a.btn {
+  float: right;
+  margin-top: 7px; }
+
+table#tasks {
+  margin-bottom: 5px; }
+  table#tasks th {
+    text-align: center; }
+  table#tasks td.task_id, table#tasks td.completed, table#tasks td.due_by, table#tasks td.created_at {
+    text-align: center; }
+  table#tasks td.total_cost {
+    text-align: right; }
+  table#tasks td.buttons {
+    text-align: center;
+    width: 160px; }
+
+table#projects {
+  margin-bottom: 5px; }
+  table#projects th, table#projects td {
+    text-align: center; }
+  table#projects td.description {
+    text-align: left; }
+  table#projects td.buttons {
+    width: 110px; }
+  table#projects td.uncompleted_tasks, table#projects td.total_tasks, table#projects td.completed_percentage {
+    width: 150px; }
+
+table#resources th {
+  text-align: center; }
+table#resources th.cost {
+  width: 120px; }
+table#resources th.buttons {
+  width: 50px; }
+table#resources td.buttons {
+  text-align: center;
+  vertical-align: middle; }
+
+#task_form #task_id {
+  width: 75px;
+  text-align: center; }
+#task_form #project {
+  width: 250px; }
+#task_form input[type="date"] {
+  width: 154px; }
+
+#project_form #project_image {
+  width: 150px;
+  height: 150px;
+  border: 1px solid; }
+#project_form #image_upload {
+  margin-top: 10px; }
+
+#modal_view_log textarea {
+  height: 500px;
+  width: 100%;
+  white-space: pre;
+  word-wrap: normal;
+  font-family: Consolas, Courier New, monospace;
+  font-size: 8pt;
+  overflow-x: scroll; }
+#modal_view_log .modal-dialog {
+  width: 95%;
+  height: 95%; }
+#modal_view_log .modal-content {
+  height: 95%; }

@@ -1,0 +1,18 @@
+%script#projects_table_template{type: 'text/template'}
+  .table_header
+    %a.btn.btn-xs.btn-primary#new New Project
+    %h2 Projects
+    %hr
+  %table.table.table-condensed.table-striped.table-bordered#projects
+    %thead
+      %tr
+        %th ID
+        %th Description
+        %th Uncompleted Tasks
+        %th Total Tasks
+        %th Completed %
+        %th Created at
+        %th
+    %tbody
+  %p.text-right Total: {{ project_count }} projects
+

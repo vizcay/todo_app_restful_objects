@@ -1,0 +1,11 @@
+%script#project_row_template{type: 'text/template'}
+  %td {{ project_id }}
+  %td.description {{ description }}
+  %td.uncompleted_tasks {{ uncompleted_tasks }}
+  %td.total_tasks {{ total_tasks }}
+  %td.completed_percentage {{ completed_percentage }}
+  %td {{ created_at }}
+  %td.buttons
+    %a.btn.btn-xs.btn-primary#edit Edit
+    %a.btn.btn-xs.btn-primary#delete Delete
+
