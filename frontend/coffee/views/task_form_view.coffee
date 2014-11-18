@@ -15,15 +15,18 @@ $ =>
 
     render: =>
       @$el.html @template(@model.attributes)
-      $.each @model.project_choices, (index, project) =>
-        @$el.find('#project').append "<option value=\"#{project.href}\"> #{project.title} </option>"
-      @$el.find('#project').val @model.get('project')
-      resources_table_view = new ResourcesTableView(collection: @model.resources, el: @$el.find('#resources_placeholder'))
-      resources_table_view.render()
       if @model.isNew()
+        resources = new Resources
         @$el.find('#save, #delete, #revert').hide()
       else
+        resources = @model.resources
+        if @model.project_choices
+          $.each @model.project_choices, (index, project) =>
+            @$el.find('#project').append "<option value=\"#{project.href}\"> #{project.title} </option>"
+        @$el.find('#project').val @model.get('project')
         @$el.find('#create, #cancel').hide()
+      resources_table_view = new ResourcesTableView(collection: resources, el: @$el.find('#resources_placeholder'))
+      resources_table_view.render()
       @
 
     on_create: =>

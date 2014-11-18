@@ -36,24 +36,28 @@
         TaskFormView.prototype.template = _.template($('#task_form_template').html());
 
         TaskFormView.prototype.render = function() {
-          var resources_table_view;
+          var resources, resources_table_view;
           this.$el.html(this.template(this.model.attributes));
-          $.each(this.model.project_choices, (function(_this) {
-            return function(index, project) {
-              return _this.$el.find('#project').append("<option value=\"" + project.href + "\"> " + project.title + " </option>");
-            };
-          })(this));
-          this.$el.find('#project').val(this.model.get('project'));
+          if (this.model.isNew()) {
+            resources = new Resources;
+            this.$el.find('#save, #delete, #revert').hide();
+          } else {
+            resources = this.model.resources;
+            if (this.model.project_choices) {
+              $.each(this.model.project_choices, (function(_this) {
+                return function(index, project) {
+                  return _this.$el.find('#project').append("<option value=\"" + project.href + "\"> " + project.title + " </option>");
+                };
+              })(this));
+            }
+            this.$el.find('#project').val(this.model.get('project'));
+            this.$el.find('#create, #cancel').hide();
+          }
           resources_table_view = new ResourcesTableView({
-            collection: this.model.resources,
+            collection: resources,
             el: this.$el.find('#resources_placeholder')
           });
           resources_table_view.render();
-          if (this.model.isNew()) {
-            this.$el.find('#save, #delete, #revert').hide();
-          } else {
-            this.$el.find('#create, #cancel').hide();
-          }
           return this;
         };
 

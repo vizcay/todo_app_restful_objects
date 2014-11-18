@@ -41,7 +41,7 @@
           representation = {};
           filtered = _.pick(this.attributes, this.persistableAttributes);
           $.each(filtered, function(name, value) {
-            if ((value != null) && value.match('^http://')) {
+            if ((value != null) && typeof value === 'string' && value.match('^http://')) {
               return representation[name] = {
                 value: {
                   href: value

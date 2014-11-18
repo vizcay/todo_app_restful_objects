@@ -5,7 +5,7 @@ $ =>
       properties['id'] = response.instanceId
       $.each response.members, (property, member) =>
         if member.memberType == 'property'
-          if member.value instanceof Object
+          if member.value instanceof Object # detect property with values
             @["#{property}_choices"] = member.choices
             properties[property] = member.value.href
             properties["#{property}_title"] = member.value.title
@@ -17,7 +17,7 @@ $ =>
       representation = {}
       filtered = _.pick(@attributes, @persistableAttributes)
       $.each filtered, (name, value) ->
-        if value? and value.match('^http://')
+        if value? and typeof value is 'string' and value.match('^http://')
           representation[name] = { value: { href: value } }
         else
           representation[name] = { value: value }

@@ -17,8 +17,10 @@
 
         Task.prototype.initialize = function() {
           this.resources = new Resources;
-          this.resources.url = "" + (appServer.get('currentServer')) + "/objects/Task/" + (this.get('id')) + "/collections/resources";
-          return this.resources.fetch();
+          if (!this.isNew()) {
+            this.resources.url = "" + (appServer.get('currentServer')) + "/objects/Task/" + (this.get('id')) + "/collections/resources";
+            return this.resources.fetch();
+          }
         };
 
         Task.prototype.urlRoot = function() {
@@ -29,6 +31,7 @@
           task_id: null,
           description: '',
           project: null,
+          project_title: '',
           completed: false,
           total_cost: 0,
           due_by: new Date().toJSON().slice(0, 10),
