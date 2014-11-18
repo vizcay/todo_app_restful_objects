@@ -27,7 +27,7 @@ task :clean_frontend do
 end
 
 desc 'watch frontend haml, scss & coffee files to recompile'
-task :front_end_autocompile do
+task :frontend_autocompile do
   FSSM.monitor(File.dirname(__FILE__), 'frontend/**/*.{haml,coffee,scss}') do
     update do |base, relative|
       input = "#{base}/#{relative}"
