@@ -78,7 +78,7 @@
         };
 
         ProjectFormView.prototype.on_cancel = function() {
-          return app.navigate('projects_list', {
+          return app.navigate('project_list', {
             trigger: true
           });
         };
@@ -87,7 +87,7 @@
           return this.model.destroy({
             wait: true,
             success: function() {
-              return app.navigate('projects_list', {
+              return app.navigate('project_list', {
                 trigger: true
               });
             }

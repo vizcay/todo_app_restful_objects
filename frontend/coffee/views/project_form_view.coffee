@@ -40,13 +40,13 @@ $ =>
       app.project_view @model.get('id')
 
     on_cancel: =>
-      app.navigate 'projects_list', trigger: true
+      app.navigate 'project_list', trigger: true
 
     on_delete: =>
       @model.destroy
         wait: true,
         success: ->
-          app.navigate 'projects_list', trigger: true
+          app.navigate 'project_list', trigger: true
 
     on_description_change: (event) =>
       @model.set {'description': $(event.target).val()}
