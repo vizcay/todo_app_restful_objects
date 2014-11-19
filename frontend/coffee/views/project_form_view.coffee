@@ -28,7 +28,7 @@ $ =>
       @model.save @model.attributes,
         wait: true
         success: ->
-          app.navigate 'projects_list', trigger: true
+          app.navigate 'project_list', trigger: true
 
     on_save: =>
       @model.save @model.changedAttributes(),

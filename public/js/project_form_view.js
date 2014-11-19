@@ -55,7 +55,7 @@
           return this.model.save(this.model.attributes, {
             wait: true,
             success: function() {
-              return app.navigate('projects_list', {
+              return app.navigate('project_list', {
                 trigger: true
               });
             }
