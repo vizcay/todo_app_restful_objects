@@ -11,7 +11,6 @@
 
         function HomeView() {
           _this.on_create_fixtures = __bind(_this.on_create_fixtures, this);
-          _this.on_connected_succesfully = __bind(_this.on_connected_succesfully, this);
           _this.on_connect = __bind(_this.on_connect, this);
           _this.render = __bind(_this.render, this);
           return HomeView.__super__.constructor.apply(this, arguments);
@@ -19,9 +18,7 @@
 
         HomeView.prototype.initialize = function() {
           appServer.on('change', this.render, this);
-          return appServer.try_to_connect(appServer.get('currentServer'), {
-            success: this.on_connected_succesfully
-          });
+          return appServer.try_to_connect(appServer.get('currentServer'));
         };
 
         HomeView.prototype.events = {
@@ -47,15 +44,6 @@
               };
             })(this)
           });
-        };
-
-        HomeView.prototype.on_connected_succesfully = function() {
-          $('#modal-ajax-wait').modal('hide');
-          if (!appServer.fixtures_created()) {
-            if (confirm('Connected to server, create fixtures?')) {
-              return appServer.create_fixtures();
-            }
-          }
         };
 
         HomeView.prototype.on_create_fixtures = function() {

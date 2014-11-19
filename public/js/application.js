@@ -63,7 +63,7 @@
         };
 
         Application.prototype.create_fixtures = function() {
-          return appServer.createFixtures();
+          return appServer.create_fixtures();
         };
 
         Application.prototype.tasks_list = function() {

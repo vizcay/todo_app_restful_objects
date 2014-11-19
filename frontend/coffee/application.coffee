@@ -30,7 +30,7 @@ $ =>
               dashboardView.render()
 
     create_fixtures: =>
-      appServer.createFixtures()
+      appServer.create_fixtures()
 
     tasks_list: ->
       @tasks = new Tasks
