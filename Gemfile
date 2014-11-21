@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'restful_objects',  '0.0.6'
+gem 'restful_objects', '0.0.6'
 
 group :development do
   gem 'rake', '10.3.2'
@@ -13,5 +13,8 @@ group :test do
   gem 'rspec',            '3.1.0'
   gem 'rack-test',        '0.6.2'
   gem 'json_expressions', '0.8.2'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'launchy'
 end
 
