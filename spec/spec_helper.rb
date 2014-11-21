@@ -24,5 +24,9 @@ end
 
 RSpec.configure do |config|
   config.include SpecHelpers
+
+  config.before :each do
+    Application.instance.reset
+  end
 end
 

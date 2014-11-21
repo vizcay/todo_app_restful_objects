@@ -62,6 +62,11 @@ class Application
     @projects.clear
   end
 
+  def reset
+    clear_tasks
+    clear_projects
+  end
+
   def fixtures_created
     not @projects.empty? and not @tasks.empty?
   end

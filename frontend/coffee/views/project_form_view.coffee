@@ -34,7 +34,7 @@ $ =>
       @model.save @model.changedAttributes(),
         wait: true
         success: =>
-          Backbone.history.loadUrl()
+          app.navigate 'project_list', trigger: true
 
     on_revert: =>
       app.project_view @model.get('id')

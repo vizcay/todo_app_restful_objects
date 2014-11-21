@@ -67,7 +67,9 @@
             wait: true,
             success: (function(_this) {
               return function() {
-                return Backbone.history.loadUrl();
+                return app.navigate('project_list', {
+                  trigger: true
+                });
               };
             })(this)
           });
