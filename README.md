@@ -15,6 +15,9 @@ $ foreman start
 ```
 Then open your browser at 'http://localhost:5000'.
 
+### License
+MIT License.
+
 ### Credits
 This project has been developed as the main subject of Pablo Vizcay undergradute System's Engineering thesis, directed by [Dr. Alejandro Zunino](http://azunino.sites.exa.unicen.edu.ar/) for the [U.N.I.C.E.N. University in Tandil - Buenos Aires - Argentina](http://www.exa.unicen.edu.ar/).
 
