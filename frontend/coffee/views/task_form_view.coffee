@@ -14,16 +14,20 @@ $ =>
       _.template $('#task_form_template').html()
 
     render: =>
+      @projects = new Projects
+      @projects.fetch(async: false)
       @$el.html @template(@model.attributes)
+      $.each @projects.models, (index, project) =>
+        @$el.find('select#project').append "<option value=\"#{project.url()}\"> #{project.get('description')} </option>"
       if @model.isNew()
         resources = new Resources
         @$el.find('#save, #delete, #revert').hide()
       else
         resources = @model.resources
-        if @model.project_choices
-          $.each @model.project_choices, (index, project) =>
-            @$el.find('#project').append "<option value=\"#{project.href}\"> #{project.title} </option>"
-        @$el.find('#project').val @model.get('project')
+        # if @model.project_choices
+        #   $.each @model.project_choices, (index, project) =>
+        #     @$el.find('select#project').append "<option value=\"#{project.href}\"> #{project.title} </option>"
+        @$el.find('select#project').val @model.get('project')
         @$el.find('#create, #cancel').hide()
       resources_table_view = new ResourcesTableView(collection: resources, el: @$el.find('#resources_placeholder'))
       resources_table_view.render()

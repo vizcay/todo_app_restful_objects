@@ -37,20 +37,22 @@
 
         TaskFormView.prototype.render = function() {
           var resources, resources_table_view;
+          this.projects = new Projects;
+          this.projects.fetch({
+            async: false
+          });
           this.$el.html(this.template(this.model.attributes));
+          $.each(this.projects.models, (function(_this) {
+            return function(index, project) {
+              return _this.$el.find('select#project').append("<option value=\"" + (project.url()) + "\"> " + (project.get('description')) + " </option>");
+            };
+          })(this));
           if (this.model.isNew()) {
             resources = new Resources;
             this.$el.find('#save, #delete, #revert').hide();
           } else {
             resources = this.model.resources;
-            if (this.model.project_choices) {
-              $.each(this.model.project_choices, (function(_this) {
-                return function(index, project) {
-                  return _this.$el.find('#project').append("<option value=\"" + project.href + "\"> " + project.title + " </option>");
-                };
-              })(this));
-            }
-            this.$el.find('#project').val(this.model.get('project'));
+            this.$el.find('select#project').val(this.model.get('project'));
             this.$el.find('#create, #cancel').hide();
           }
           resources_table_view = new ResourcesTableView({
