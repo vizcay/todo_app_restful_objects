@@ -23,4 +23,3 @@ $ =>
 
     on_cost_change: (event) =>
       @model.set {'cost': $(event.target).val()}
-

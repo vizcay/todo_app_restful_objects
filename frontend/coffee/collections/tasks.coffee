@@ -17,4 +17,3 @@ $ =>
         url: "#{appServer.get('currentServer')}/services/Application/actions/clear_tasks/invoke"
         success: ->
           app.navigate 'tasks_list', trigger: true
-

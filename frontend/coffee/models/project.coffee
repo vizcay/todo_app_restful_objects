@@ -11,4 +11,3 @@ $ =>
       completed_percentage: 0
 
     persistableAttributes: ['description', 'image']
-

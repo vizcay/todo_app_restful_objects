@@ -8,4 +8,3 @@ $ =>
   $(document).ajaxComplete (event, xhr, settings) ->
     app.logs.push { type: 'response', data: xhr.responseText }
     $('#modal-ajax-wait').modal('hide')
-

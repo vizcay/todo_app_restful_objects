@@ -24,4 +24,3 @@ $ =>
         url = "#{app.get('currentServer')}/objects/Task/#{owner_task.get('id')}/collections/resources"
         $.ajax url, type: 'DELETE', async: false, data: payload, processData: false, success: ->
           resource.destroy()
-

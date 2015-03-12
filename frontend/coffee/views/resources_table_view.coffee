@@ -21,4 +21,3 @@ $ =>
 
     on_append: =>
       @collection.add new Resource
-

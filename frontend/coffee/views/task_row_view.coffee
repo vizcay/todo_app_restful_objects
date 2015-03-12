@@ -29,4 +29,3 @@ $ =>
           wait: true,
           success: ->
             Backbone.history.loadUrl()
-

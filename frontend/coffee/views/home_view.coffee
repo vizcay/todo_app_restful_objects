@@ -24,4 +24,3 @@ $ =>
 
     on_create_fixtures: =>
       app.navigate 'create_fixtures', trigger: true
-

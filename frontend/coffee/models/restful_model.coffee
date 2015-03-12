@@ -27,4 +27,3 @@ $ =>
       if method == 'create'
         options.attrs = { members: model.toJSON() }
       Backbone.sync(method, model, options)
-

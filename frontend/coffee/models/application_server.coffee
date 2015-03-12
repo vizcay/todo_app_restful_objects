@@ -32,4 +32,3 @@ $ =>
         success: (data) =>
           result = JSON.parse(data).result.value == 'true'
       return result
-

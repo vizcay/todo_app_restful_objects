@@ -96,4 +96,3 @@ $ =>
   @app       = new Application
   @appServer = new ApplicationServer
   Backbone.history.start()
-

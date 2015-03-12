@@ -16,5 +16,3 @@ $ =>
     on_new: (e) =>
       e.preventDefault()
       app.navigate 'task_new', trigger: true
-
-

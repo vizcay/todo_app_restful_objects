@@ -17,4 +17,3 @@ $ =>
         url: "#{appServer.get('currentServer')}/services/Application/actions/clear_projects/invoke"
         success: ->
           app.navigate 'project_list', trigger: true
-

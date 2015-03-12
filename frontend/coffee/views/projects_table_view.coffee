@@ -16,4 +16,3 @@ $ =>
     on_new: (e) =>
       e.preventDefault()
       app.navigate 'project_new', trigger: true
-

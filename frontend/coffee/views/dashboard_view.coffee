@@ -16,6 +16,6 @@ $ =>
         column.append @project_template(project.attributes)
         $.each project.tasks, (index2, task) =>
           column.find('.project_box').last().find('.tasks_container').append @task_template(task.attributes)
-        column.find('.project_image').last().attr 'src', 'data:image/png;base64,' + project.attributes.image
+        if project.attributes.image
+          column.find('.project_image').last().attr 'src', 'data:image/png;base64,' + project.attributes.image
       @
-

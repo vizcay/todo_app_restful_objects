@@ -25,4 +25,3 @@ $ =>
       super
       if method == 'update'
         @resources.save @
-

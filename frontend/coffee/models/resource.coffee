@@ -8,4 +8,3 @@ $ =>
       cost:        0
 
     persistableAttributes: ['description', 'cost']
-

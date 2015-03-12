@@ -57,4 +57,3 @@ $ =>
         @model.set { image: btoa(event.target.result) }
         @display_png @model.get('image')
       fileReader.readAsBinaryString(event.target.files[0])
-

@@ -65,4 +65,3 @@ $ =>
 
     on_due_by_change: (event) =>
       @model.set { 'due_by': $(event.target).val() }
-

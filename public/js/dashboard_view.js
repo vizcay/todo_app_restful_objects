@@ -30,7 +30,9 @@
               $.each(project.tasks, function(index2, task) {
                 return column.find('.project_box').last().find('.tasks_container').append(_this.task_template(task.attributes));
               });
-              return column.find('.project_image').last().attr('src', 'data:image/png;base64,' + project.attributes.image);
+              if (project.attributes.image) {
+                return column.find('.project_image').last().attr('src', 'data:image/png;base64,' + project.attributes.image);
+              }
             };
           })(this));
           return this;
