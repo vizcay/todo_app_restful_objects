@@ -38,4 +38,3 @@ module JsonExpressions
     end
   end
 end
-

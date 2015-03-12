@@ -20,4 +20,3 @@ describe Project do
     expect { project.created_at = Date.new }.to raise_error
   end
 end
-

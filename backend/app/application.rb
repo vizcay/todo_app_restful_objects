@@ -75,4 +75,3 @@ class Application
     Fixtures.create
   end
 end
-

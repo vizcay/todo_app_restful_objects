@@ -69,4 +69,3 @@ class Fixtures
     t3.priority    = 'M'
   end
 end
-

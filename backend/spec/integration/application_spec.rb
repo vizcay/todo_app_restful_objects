@@ -47,4 +47,3 @@ describe Application do
     expect(application.projects).to be_empty
   end
 end
-

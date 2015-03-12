@@ -72,4 +72,3 @@ describe Task do
     expect { task.created_at = Date.new(2014, 10, 5) }.to raise_error
   end
 end
-

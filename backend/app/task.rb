@@ -50,4 +50,3 @@ class Task
     Application.instance.tasks.delete(self)
   end
 end
-

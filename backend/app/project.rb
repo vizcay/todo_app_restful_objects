@@ -57,4 +57,3 @@ class Project
     Application.instance.projects.delete(self)
   end
 end
-

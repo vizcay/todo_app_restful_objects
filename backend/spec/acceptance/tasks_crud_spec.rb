@@ -64,4 +64,3 @@ describe 'Tasks' do
     expect(Application.instance.tasks).not_to include task
   end
 end
-
