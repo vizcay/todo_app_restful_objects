@@ -23,7 +23,7 @@ describe Project do
     end
 
     it 'is added to the application projects' do
-      expect(Application.instance.projects).to include project
+      expect(todo_app.projects).to include project
     end
 
     it 'computes #uncompleted_tasks' do

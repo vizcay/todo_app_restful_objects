@@ -9,8 +9,8 @@ feature 'Projects,', js: true do
     click_on 'Create'
     expect(fragment(current_url)).to eq '#project_list'
     expect(page).to have_content 'Build house'
-    expect(app.get_projects.length).to            eq 1
-    expect(app.get_projects.first.description).to eq 'Build house'
+    expect(todo_app.get_projects.length).to            eq 1
+    expect(todo_app.get_projects.first.description).to eq 'Build house'
   end
 
   scenario 'it deletes project' do
